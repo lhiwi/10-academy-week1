@@ -1,7 +1,26 @@
+# Python
 __pycache__/
-*.py[cod]
-.env
-*.log
-*.csv
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# VS Code
 .vscode/
+
+# Jupyter
 .ipynb_checkpoints/
+
+# Env
+.env
+venv/
+ENV/
+env/
+venv.bak/
+
+# Mac
+.DS_Store
+
+# Output
+data/
+*.log
