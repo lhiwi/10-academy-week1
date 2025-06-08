@@ -1,0 +1,23 @@
+{
+    // Always use LF endings to avoid CRLF vs LF issues
+    "files.eol": "\n",
+    
+    // Python settings
+    "python.pythonPath": "venv/Scripts/python.exe",  // <-- Adjust if Mac/Linux: "venv/bin/python"
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    
+    // Jupyter settings for clean notebooks
+    "jupyter.jupyterServerType": "local",
+    "jupyter.allowImportFromNotebook": true,
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "jupyter.sendSelectionToInteractiveWindow": true,
+    "jupyter.saveState": {
+        "showCellExecutionState": false
+    },
+
+    // Prevent Jupyter from inserting metadata noise
+    "notebook.formatOnSave.enabled": true,
+    "notebook.cellToolbarVisibility": "hover",
+    "notebook.output.textLineLimit": 100
+}
