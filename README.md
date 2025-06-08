@@ -1,13 +1,13 @@
-# 📚 Fintech Customer Experience Analytics
+#  Fintech Customer Experience Analytics
 
-## 📋 Prerequisites
+## Prerequisites
 
 * **Python** 3.8 or higher
 * **Git** (version control)
 * **Oracle XE** (or PostgreSQL fallback for database storage)
 * **VS Code** (with PowerShell or Terminal)
 
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 1. **Clone the repository**:
 
