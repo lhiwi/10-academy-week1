@@ -7,10 +7,11 @@ import logging
 logging.basicConfig(filename='scraper.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 apps = [
-    {"bank_name": "Commercial Bank of Ethiopia", "app_id": "PUT_CBE_APP_ID_HERE"},
-    {"bank_name": "Bank of Abyssinia", "app_id": "PUT_BOA_APP_ID_HERE"},
+    {"bank_name": "Commercial Bank of Ethiopia", "app_id": "com.combanketh.mobilebanking"},
+    {"bank_name": "Bank of Abyssinia", "app_id": "com.boa.boaMobileBanking"},
     {"bank_name": "Dashen Bank", "app_id": "com.dashen.dashensuperapp"}
 ]
+
 
 def scrape_play_store_reviews(output_path="data/"):
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
