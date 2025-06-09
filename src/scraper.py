@@ -12,6 +12,7 @@ apps = [
     {"bank_name": "Dashen Bank", "app_id": "com.dashen.dashensuperapp"}
 ]
 
+
 def scrape_play_store_reviews(output_path="data/"):
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     filename = f'{output_path}bank_reviews_{timestamp}.csv'

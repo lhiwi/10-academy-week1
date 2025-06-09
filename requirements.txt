@@ -1,5 +1,13 @@
-google-play-scraper
-pandas
-schedule
-jupyter
 pytest
+pandas
+google-play-scraper
+jupyter
+vaderSentiment
+transformers
+torch
+matplotlib
+seaborn
+wordcloud
+spacy
+nltk
+scikit-learn
