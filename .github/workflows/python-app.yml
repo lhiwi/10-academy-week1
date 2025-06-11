@@ -6,11 +6,9 @@ jobs:
   build:
     runs-on: windows-latest
 
-    runs-on: windows-latest
-
     strategy:
       matrix:
-        python-version: ['3.11']  # Only one version unless multi-version is required
+        python-version: ['3.11']
 
     steps:
       - name: Checkout code
@@ -21,18 +19,12 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install --no-cache-dir -r requirements.txt
 
       - name: Run tests
         run: |
