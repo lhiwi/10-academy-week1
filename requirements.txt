@@ -1,4 +1,5 @@
 pytest
+
 # Core tools
 pandas==2.2.2
 numpy==1.24.4
@@ -22,12 +23,11 @@ tokenizers==0.19.1
 # Feature extraction / ML
 scikit-learn==1.4.2
 
+# Oracle Database
+oracledb==2.1.0
+python-dotenv==1.0.1
+
 # Jupyter
 jupyter==1.0.0
 notebook>=7.1.0
 ipykernel>=6.29.0
-
-
-
-
-
