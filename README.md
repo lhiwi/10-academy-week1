@@ -1,39 +1,40 @@
 #  Fintech Customer Experience Analytics
 
-## Prerequisites
+##  Prerequisites
 
-* **Python** 3.8 or higher
+* **Python** 3.10 or higher
 * **Git** (version control)
 * **Oracle XE** (or PostgreSQL fallback for database storage)
 * **VS Code** (with PowerShell or Terminal)
 
-##  Installation & Setup
+---
+
+## Installation & Setup
 
 1. **Clone the repository**:
 
-```bash
-git clone https://github.com/lhiwi/fintech-customer-experience.git
-cd fintech-customer-experience
-```
+   ```bash
+   git clone https://github.com/lhiwi/fintech-customer-experience.git
+   cd fintech-customer-experience
+   ```
 
 2. **Create a virtual environment**:
 
-```bash
-python -m venv venv
+   ```bash
+   python -m venv venv
 
-# Windows (PowerShell)
-.\venv\Scripts\Activate.ps1
+   # Windows (PowerShell)
+   .\venv\Scripts\Activate.ps1
 
-# Mac/Linux
-source venv/bin/activate
-```
+   # Mac/Linux
+   source venv/bin/activate
+   ```
 
 3. **Install dependencies**:
 
-```bash
-pip install -r requirements.txt
-```
-
+   ```bash
+   pip install -r requirements.txt
+   ```
 ---
 
 ##  Project Structure
@@ -44,13 +45,11 @@ fintech-customer-experience/
 ├── scripts/           # Standalone executable scripts
 ├── notebooks/         # Jupyter notebooks for exploration and preprocessing
 ├── tests/             # pytest unit tests
-├── docs/              # Challenge documentation and final reports
 ├── .github/
 │   └── workflows/     # CI/CD (GitHub Actions workflows)
 ├── .gitignore         # Git ignore file
 ├── requirements.txt   # Project dependencies
 ├── README.md          # Project overview (this file)
-└── LICENSE            # License (e.g., MIT)
 ```
 
 ---
@@ -64,45 +63,93 @@ We follow a **task-based branching** workflow:
 * `task-3`: Database Design and Loading
 * `task-4`: Insights Visualization and Reporting
 
-**Create and switch to a task branch**:
+To create and switch to a task branch:
 
 ```bash
 git checkout -b task-1
 ```
 
 Merge completed work into `main` via **Pull Requests**.
-Pull Requests trigger the CI/CD pipelines configured for `task-*` branches and `main`.
 
 ---
 
 ##  Task 1: Data Collection & Preprocessing
 
-* **Scraped** customer reviews from Google Play Store for:
+* Scraped customer reviews from Google Play Store for:
 
-  * Commercial Bank of Ethiopia
-  * Bank of Abyssinia
+  * Commercial Bank of Ethiopia (CBE)
+  * Bank of Abyssinia (BOA)
   * Dashen Bank
-* **Preprocessing** steps:
+* Preprocessing steps:
 
-  * Removed duplicate reviews
-  * Dropped reviews with missing data
+  * Removed duplicate and incomplete entries
+  * Standardized date formats
 * **Output**:
 
-  * `data/bank_reviews_clean.csv` — cleaned dataset
+  * `data/bank_reviews_clean.csv` — Cleaned dataset
 
 ---
 
-## Customer Experience Analytics for Fintech Apps
+##  Task 2: Sentiment and Thematic Analysis
 
-In this project, customer reviews from the Google Play Store are analyzed to derive actionable insights for mobile banking apps. Key deliverables include:
+* Used `distilbert-base-uncased-finetuned-sst-2-english` for sentiment classification
+* Assigned each review:
 
-* **Sentiment Analysis**: Categorize reviews into positive, neutral, and negative sentiments.
-* **Thematic Analysis**: Extract key themes (e.g., UI/UX, performance, feature requests) using keyword extraction and topic modeling techniques.
-* **Pain Points and Satisfaction Drivers**: Identify and prioritize issues users face and features they appreciate.
-* **Visualization and Reporting**: Create clear, stakeholder-friendly charts and summaries to guide app improvement strategies.
+  * `sentiment_label` (POSITIVE/NEGATIVE)
+  * `sentiment_score` (confidence level)
+* Extracted key themes using **TF-IDF** and **NLTK**:
 
-The goal is to enable Ethiopian banks to **enhance customer satisfaction** and **retain users** by addressing real-world feedback.
+  * Identified recurring issues like “login errors” and “slow transactions”
+  * Grouped into themes such as **Access Issues**, **Performance**, **UI/UX**, **Support**
+* **Output**:
+
+  * `data/reviews_with_sentiment.csv` — with sentiment scores
+  * `data/keywords_nltk.csv` — extracted keywords
+  * `data/reviews_labeled.csv` — reviews tagged with themes
 
 ---
 
- **Now ready for Task 2: Sentiment and Thematic Analysis!**
+##  Task 3: Database Design and Loading
+
+* Designed a relational schema with:
+
+  * `banks` table for metadata
+  * `reviews` table for processed review entries
+* Created tables in **Oracle XE**
+* Loaded 1,200+ labeled reviews using a Python insert script via `oracledb`
+* **Output**:
+
+  * `scripts/load_to_oracle.py` — ETL script
+  * Oracle schema with populated data
+  * SQL dump for backup and reuse
+
+---
+
+##  Task 4: Insights Visualization and Reporting
+
+* Generated key business insights per bank:
+
+  * **Pain Points**: login failures, crashes, server delays
+  * **Satisfaction Drivers**: ease of transfer, good UI
+* Created stakeholder-friendly visualizations:
+
+  * Sentiment distribution per bank
+  * Word clouds for positive/negative reviews
+  * Heatmap of rating vs sentiment
+* Delivered recommendations for app improvement
+* **Output**:
+
+  * `notebooks/Insights&visualizations.ipynb`
+  * `docs/final_report.pdf` — Medium-style report (7 pages, 7+ plots)
+
+---
+
+##  Project Objective
+
+To analyze user feedback from fintech apps and provide **data-driven recommendations** to:
+
+* Improve mobile app performance and usability
+* Boost customer satisfaction
+* Reduce churn through targeted enhancements
+
+By leveraging NLP, data engineering, and visualization, this project helps Ethiopian banks **translate customer voices into actionable change**.
